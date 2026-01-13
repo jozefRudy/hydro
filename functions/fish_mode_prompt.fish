@@ -1,21 +1,17 @@
 function fish_mode_prompt
-    if test "$fish_key_bindings" != fish_default_key_bindings
-        set --local vi_mode_color
-        set --local vi_mode_symbol
-        switch $fish_bind_mode
-            case default
-                set vi_mode_color (set_color $fish_color_selection)
-                set vi_mode_symbol N
-            case insert
-                set vi_mode_color (set_color $fish_color_selection)
-                set vi_mode_symbol I
-            case replace replace_one
-                set vi_mode_color (set_color $fish_color_match)
-                set vi_mode_symbol R
-            case visual
-                set vi_mode_color (set_color $fish_color_match)
-                set vi_mode_symbol V
-        end
-        echo -e -n "$vi_mode_color $vi_mode_symbol \x1b[0m "
+    # Cursor shape indicates mode:
+    # - Insert: bar
+    # - Normal: block
+    # - Replace: underline
+    # - Visual: block (same as normal)
+    switch $fish_bind_mode
+        case default
+            echo -en "\e[2 q" # block
+        case insert
+            echo -en "\e[6 q" # bar
+        case replace replace_one
+            echo -en "\e[4 q" # underline
+        case visual
+            echo -en "\e[2 q" # block
     end
 end
