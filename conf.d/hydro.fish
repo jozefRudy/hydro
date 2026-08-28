@@ -96,7 +96,7 @@ function _hydro_prompt --on-event fish_prompt
 
             test \$fetch = true && command git fetch --no-tags 2>/dev/null
         end
-    " &
+    " & disown
 
     set --global _hydro_last_pid $last_pid
 end
