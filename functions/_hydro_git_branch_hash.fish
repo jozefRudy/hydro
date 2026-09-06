@@ -12,7 +12,7 @@ function _hydro_git_branch_hash --description "Print branch(sha), tag(sha), or @
         )
     end
 
-    set --local hash (command git rev-parse --short=5 HEAD 2>/dev/null)
+    set --local hash (command git rev-parse --short=7 HEAD 2>/dev/null)
     test -n "$hash" && ! string match --quiet -- '@*' "$branch" && set branch "$branch($hash)"
 
     echo $branch

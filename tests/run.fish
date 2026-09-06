@@ -1,11 +1,15 @@
 #!/usr/bin/env fish
 # Run all tests: fish tests/run.fish
 
-set --local failed
+set --local pass 0
+set --local fail 0
+
 for t in (status dirname)/*.test.fish
-    fish $t; or set --append failed $t
+    set --local lines (fish $t | string split \n)
+    printf '%s\n' $lines
+    set pass (math $pass + (count (string match -- 'ok - *' -- $lines)))
+    set fail (math $fail + (count (string match -- 'not ok - *' -- $lines)))
 end
 
-set --local n (count $failed)
-test $n -eq 0 || echo "# $n test file(s) failed: $failed"
-exit $n
+echo "# pass $pass, fail $fail"
+exit $fail

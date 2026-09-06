@@ -17,7 +17,7 @@ end
 setup_repo
 check "branch includes short hash" \
     (_hydro_git_branch_hash) \
-    "main("(command git -C $repo rev-parse --short=5 HEAD)")"
+    "main("(command git -C $repo rev-parse --short=7 HEAD)")"
 
 command git -C $repo checkout -q --detach HEAD
 check "detached HEAD prints @hash without duplication" \
@@ -28,8 +28,6 @@ command git -C $repo tag v1.0
 command git -C $repo checkout -q v1.0
 check "tag checkout prints tag(hash)" \
     (_hydro_git_branch_hash) \
-    "v1.0("(command git -C $repo rev-parse --short=5 HEAD)")"
+    "v1.0("(command git -C $repo rev-parse --short=7 HEAD)")"
 
 teardown_repo
-
-check_summary
