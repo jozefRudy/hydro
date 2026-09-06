@@ -64,7 +64,7 @@ function _hydro_prompt --on-event fish_prompt
     set --query _hydro_skip_git_prompt && set $_hydro_git && return
 
     fish --private --command "
-        set branch ($_hydro_git_branch_hash)
+        set branch (_hydro_git_branch_hash)
 
         test -z \"\$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 

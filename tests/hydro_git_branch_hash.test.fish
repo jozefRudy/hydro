@@ -32,6 +32,4 @@ check "tag checkout prints tag(hash)" \
 
 teardown_repo
 
-set --local n (count $failures)
-echo "# pass "(math 3 - $n)", fail $n"
-exit $n
+check_summary
