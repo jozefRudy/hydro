@@ -52,7 +52,7 @@ function _hydro_postexec --on-event fish_postexec
     test $mins -gt 0 && set --local --append out $mins"m"
     test $secs -gt 0 && set --local --append out $secs"s"
 
-    set --global _hydro_cmd_duration "$out "
+    set --global _hydro_cmd_duration (string join '' -- $out)' '
 end
 
 function _hydro_prompt --on-event fish_prompt
