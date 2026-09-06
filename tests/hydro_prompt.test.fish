@@ -28,6 +28,6 @@ set --local out (
 
 check "subshell sets branch uvar with hash" \
     "$out" \
-    "main("(command git -C $repo rev-parse --short=7 HEAD)")"
+    "main@"(command git -C $repo rev-parse --short=7 HEAD)
 
 command rm -rf $repo $base
